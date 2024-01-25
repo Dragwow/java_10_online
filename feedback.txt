@@ -1,0 +1,12 @@
+REMOVE .idea from project
+
+Оч хорошо, чуть позже поясню, почему не оч хорошо создавать
+3 экземпляра BufferedReader, но то в будущем)
+
+        int lessonHour = 45;
+        int totalMinutes = (hour - 1) * (lessonHour + 5) + (hour / 2) * 10 + lessonHour;
+        int endHour = 9 + totalMinutes / 60;
+        int endMinute = totalMinutes % 60;
+
+        алгоритм пойдет)), но вот эти чудо числа лучше выносить в константы)
+
