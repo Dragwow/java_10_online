@@ -68,8 +68,6 @@ public class dbData {
                 return;
             }
         }
-
-        // Если все элементы заняты, увеличиваем массив
         EntityGetCred[] newEntityGetCredits = new EntityGetCred[entityGetCredits.length * 2];
         System.arraycopy(entityGetCredits, 0, newEntityGetCredits, 0, entityGetCredits.length);
         newEntityGetCredits[entityGetCredits.length] = entityGetCred;
