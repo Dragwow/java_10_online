@@ -23,7 +23,9 @@ public class Console {
         System.out.println("Register (1)");
         System.out.println("View registered accounts (2)");
         System.out.println("Update data account (3)");
-        System.out.println("Delete account (4)");
+        System.out.println("If you want to get credit (4)");
+        System.out.println("View accounts who have credit (5)");
+        System.out.println("Delete account (6)");
         System.out.println("(exit)");
         System.out.println();
         System.out.print("Enter: ");
@@ -34,7 +36,9 @@ public class Console {
             case "1" -> create(reader);
             case "2" -> list();
             case "3" -> update(reader);
-            case "4" -> delete(reader);
+            case "4" -> createCred(reader);
+            case "5" -> listCred();
+            case "6" -> delete(reader);
             case "exit" -> System.exit(0);
         }
     }
@@ -43,7 +47,7 @@ public class Console {
         Work.create(reader);
     }
 
-    void list() throws IOException{
+    void list() {
         Work.list();
     }
 
@@ -53,5 +57,12 @@ public class Console {
 
     void delete(BufferedReader reader) throws IOException{
         Work.delete(reader);
+    }
+
+    void createCred(BufferedReader reader) throws IOException{
+        Work.createCred(reader);
+    }
+    void listCred() {
+        Work.listCred();
     }
 }

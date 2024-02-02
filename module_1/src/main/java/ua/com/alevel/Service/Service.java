@@ -1,6 +1,7 @@
 package ua.com.alevel.Service;
 
 import ua.com.alevel.Entity.EntityData;
+import ua.com.alevel.Entity.EntityGetCred;
 import ua.com.alevel.db.dbData;
 
 public class Service {
@@ -33,5 +34,26 @@ public class Service {
 
     public EntityData findByPasswordAndLogin(String login, String password){
         return dbData.findByPasswordAndLogin(login, password);
+    }
+    public void createCred(EntityGetCred entityGetCred, EntityData entityData, String login, String password) {
+        EntityData current = dbData.findByPasswordAndLogin(login, password);
+        if (current != null) {
+            if (checkData(entityGetCred, entityData)) {
+                dbData.createCred(entityGetCred);
+            }
+        }
+    }
+
+    private boolean checkData(EntityGetCred entityGetCred, EntityData entityData) {
+        return entityGetCred.getFirstName().equals(entityData.getFirstName()) &&
+                entityGetCred.getLastName().equals(entityData.getLastName()) &&
+                entityGetCred.getSurName().equals(entityData.getSurName()) &&
+                entityGetCred.getYearOfBirth() == entityData.getYearOfBirth() &&
+                entityGetCred.getMonthOfBirth() == entityData.getMonthOfBirth() &&
+                entityGetCred.getDayOfBirth() == entityData.getDayOfBirth() &&
+                entityGetCred.getIdOfPassport() == entityData.getIdOfPassport();
+    }
+    public EntityGetCred[] listCred(){
+        return dbData.listCred();
     }
 }

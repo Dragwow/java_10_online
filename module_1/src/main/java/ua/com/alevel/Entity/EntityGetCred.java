@@ -1,8 +1,6 @@
 package ua.com.alevel.Entity;
 
-
-public class EntityData  {
-
+public class EntityGetCred {
     private String login;
     private String password;
     private String firstName;

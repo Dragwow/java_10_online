@@ -1,10 +1,12 @@
 package ua.com.alevel.db;
 
 import ua.com.alevel.Entity.EntityData;
+import ua.com.alevel.Entity.EntityGetCred;
 
 public class dbData {
 
     private EntityData[] entityDats = new EntityData[10];
+    private EntityGetCred[] entityGetCredits = new EntityGetCred[10];
 
     public void create(EntityData entityData) {
         int index = -1;
@@ -21,7 +23,6 @@ public class dbData {
             index = entityDats.length - 1;
         }
         entityDats[index] = entityData;
-        entityData.setId(index);
     }
 
     public EntityData[] list(){
@@ -59,4 +60,26 @@ public class dbData {
         }
         return null;
     }
+
+    public void createCred(EntityGetCred entityGetCred) {
+        for (int i = 0; i < entityGetCredits.length; i++) {
+            if (entityGetCredits[i] == null) {
+                entityGetCredits[i] = entityGetCred;
+                return;
+            }
+        }
+
+        // Если все элементы заняты, увеличиваем массив
+        EntityGetCred[] newEntityGetCredits = new EntityGetCred[entityGetCredits.length * 2];
+        System.arraycopy(entityGetCredits, 0, newEntityGetCredits, 0, entityGetCredits.length);
+        newEntityGetCredits[entityGetCredits.length] = entityGetCred;
+        entityGetCredits = newEntityGetCredits;
+    }
+    public EntityGetCred[] listCred(){
+        return entityGetCredits;
+    }
 }
+
+
+
+
