@@ -1,13 +1,14 @@
 package ua.com.alevel.Work;
 
 import ua.com.alevel.Entity.EntityData;
-import ua.com.alevel.Entity.EntityGetCred;
 import ua.com.alevel.Service.Service;
+import ua.com.alevel.console.Account;
+import ua.com.alevel.console.AdminProfile;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 
-public class Work {
+public class WorkAccount {
 
     private static final Service service = new Service();
 
@@ -51,10 +52,10 @@ public class Work {
             for (EntityData entityDat : entityDats) {
                 if (entityDat != null) {
                     System.out.println();
-                    System.out.println("Login " + entityDat.getLogin() +
+                    System.out.println("Login: " + entityDat.getLogin() +
                             " | FLS: " + entityDat.getFirstName() + " " + entityDat.getLastName() + " " + entityDat.getSurName() +
                             " | Date of birth : " + entityDat.getDayOfBirth() + "/" + entityDat.getMonthOfBirth() + "/" + entityDat.getYearOfBirth() +
-                            " | Id of passport:" + entityDat.getIdOfPassport());
+                            " | Id of passport: " + entityDat.getIdOfPassport());
                 }
             }
         } else {
@@ -113,58 +114,69 @@ public class Work {
             System.out.println("Not found account or enter again.");
         }
     }
-    public static void createCred(BufferedReader reader) throws IOException{
+
+    public static void updatePassword(BufferedReader reader) throws IOException{
+        System.out.println();
+        System.out.println("If you want to change your password, enter yes or the opposite then no.");
+        String word = reader.readLine();
+        if (word.equals("yes")) {
+            System.out.println();
+            System.out.print("Enter Login: ");
+            String findLogin = reader.readLine();
+            System.out.print("Enter password: ");
+            String findPassword = reader.readLine();
+            EntityData entityDataUpdatePassword = service.findByPasswordAndLogin(findLogin, findPassword);
+            while (true) {
+                if (entityDataUpdatePassword != null) {
+                    System.out.println();
+                    System.out.print("Enter new password: ");
+                    String newPassword = reader.readLine();
+                    System.out.println();
+                    System.out.print("Enter again new password: ");
+                    String newPassword2 = reader.readLine();
+                    if (newPassword.equals(newPassword2)) {
+                        entityDataUpdatePassword.setPassword(newPassword);
+                        service.updatePassword(entityDataUpdatePassword);
+                        break;
+                    } else {
+                        System.out.println();
+                        System.out.print("Try again.");
+                    }
+                }
+            }
+        }
+    }
+
+    public static void logInStart(BufferedReader reader) throws IOException{
+        System.out.println("     Log in    ");
         System.out.println();
         System.out.print("Enter Login: ");
         String findLogin = reader.readLine();
         System.out.print("Enter password: ");
         String findPassword = reader.readLine();
-        EntityData entityData = service.findByPasswordAndLogin(findLogin, findPassword);
-        if (entityData != null) {
-            System.out.print("Enter firstname: ");
-            String firstName = reader.readLine();
-            System.out.print("Enter lastname: ");
-            String lastName = reader.readLine();
-            System.out.print("Enter surname: ");
-            String surName = reader.readLine();
-            System.out.print("Enter year of birth: ");
-            int yearOfBirth = Integer.parseInt(reader.readLine());
-            System.out.print("Enter month of birth: ");
-            int monthOfBirth = Integer.parseInt(reader.readLine());
-            System.out.print("Enter day of birth: ");
-            int dayOfBirth = Integer.parseInt(reader.readLine());
-            System.out.print("Enter id of passport: ");
-            int idOfPassport = Integer.parseInt(reader.readLine());
-            EntityGetCred entityGetCred = new EntityGetCred();
-            entityGetCred.setLogin(findLogin);
-            entityGetCred.setPassword(findPassword);
-            entityGetCred.setFirstName(firstName);
-            entityGetCred.setLastName(lastName);
-            entityGetCred.setSurName(surName);
-            entityGetCred.setYearOfBirth(yearOfBirth);
-            entityGetCred.setMonthOfBirth(monthOfBirth);
-            entityGetCred.setDayOfBirth(dayOfBirth);
-            entityGetCred.setIdOfPassport(idOfPassport);
-            service.createCred(entityGetCred,entityData, findLogin , findPassword);
-        }
-
-    }
-    public static void listCred()  {
-        EntityGetCred[] entityGetCredits = service.listCred();
-
-        if (entityGetCredits.length != 0) {
-            for (EntityGetCred entityGetCred : entityGetCredits) {
-                if (entityGetCred != null) {
-                    System.out.println();
-                    System.out.println("Login " + entityGetCred.getLogin() +
-                            " | FLS: " + entityGetCred.getFirstName() + " " + entityGetCred.getLastName() + " " + entityGetCred.getSurName() +
-                            " | Date of birth : " + entityGetCred.getDayOfBirth() + "/" + entityGetCred.getMonthOfBirth() + "/" + entityGetCred.getYearOfBirth() +
-                            " | Id of passport:" + entityGetCred.getIdOfPassport());
-                }
-            }
-        } else {
-            System.out.println("Not found accounts!");
+        EntityData loginAccount = service.findByPasswordAndLogin(findLogin, findPassword);
+        if (loginAccount != null){
+            Account account = new Account();
+            account.start();
+        }else {
+            System.out.println();
+            System.out.println("Try again or register");
         }
     }
 
+    public static void logInAdmin(BufferedReader reader) throws IOException{
+        System.out.println("     Log in admin   ");
+        System.out.println();
+        System.out.print("Enter Login: ");
+        String findLogin = reader.readLine();
+        System.out.print("Enter password: ");
+        String findPassword = reader.readLine();
+        if (findLogin.equals("admin") && findPassword.equals("admin")){
+            AdminProfile adminProfile = new AdminProfile();
+            adminProfile.start();
+        }else {
+            System.out.println();
+            System.out.println("No access");
+        }
+    }
 }

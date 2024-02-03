@@ -1,12 +1,10 @@
 package ua.com.alevel.db;
 
 import ua.com.alevel.Entity.EntityData;
-import ua.com.alevel.Entity.EntityGetCred;
 
-public class dbData {
+public class dbAccount {
 
     private EntityData[] entityDats = new EntityData[10];
-    private EntityGetCred[] entityGetCredits = new EntityGetCred[10];
 
     public void create(EntityData entityData) {
         int index = -1;
@@ -24,7 +22,6 @@ public class dbData {
         }
         entityDats[index] = entityData;
     }
-
     public EntityData[] list(){
         return entityDats;
     }
@@ -61,23 +58,13 @@ public class dbData {
         return null;
     }
 
-    public void createCred(EntityGetCred entityGetCred) {
-        for (int i = 0; i < entityGetCredits.length; i++) {
-            if (entityGetCredits[i] == null) {
-                entityGetCredits[i] = entityGetCred;
-                return;
+    public void updatePassword(EntityData entityData){
+        for (int i = 0; i < entityDats.length; i++) {
+            if (entityDats[i] != null) {
+                entityDats[i] = entityData;
+                break;
             }
         }
-        EntityGetCred[] newEntityGetCredits = new EntityGetCred[entityGetCredits.length * 2];
-        System.arraycopy(entityGetCredits, 0, newEntityGetCredits, 0, entityGetCredits.length);
-        newEntityGetCredits[entityGetCredits.length] = entityGetCred;
-        entityGetCredits = newEntityGetCredits;
     }
-    public EntityGetCred[] listCred(){
-        return entityGetCredits;
-    }
+
 }
-
-
-
-

@@ -2,7 +2,6 @@ package ua.com.alevel.Entity;
 
 public class EntityGetCred {
     private String login;
-    private String password;
     private String firstName;
     private String lastName;
     private String surName;
@@ -10,6 +9,7 @@ public class EntityGetCred {
     private int monthOfBirth;
     private int dayOfBirth;
     private int idOfPassport;
+    private int sumOfCredit;
 
     public String getLogin(){
         return login;
@@ -19,13 +19,7 @@ public class EntityGetCred {
         this.login = login;
     }
 
-    public String getPassword(){
-        return password;
-    }
 
-    public void setPassword(String password){
-        this.password = password;
-    }
 
     public String getFirstName(){
         return firstName;
@@ -88,6 +82,16 @@ public class EntityGetCred {
     public void setIdOfPassport(int idOfPassport) {
         if (idOfPassport >= 10000000 && idOfPassport <= 99999999){
             this.idOfPassport = idOfPassport;
+        }
+    }
+
+    public int getSumOfCredit() {
+        return sumOfCredit;
+    }
+
+    public void setSumOfCredit(int sumOfCredit) {
+        if (sumOfCredit >= 1000 && sumOfCredit <= 1000000){
+            this.sumOfCredit = sumOfCredit;
         }
     }
 }
