@@ -22,7 +22,7 @@ public class FirstPageBank {
         System.out.println("Register (1)");
         System.out.println("Profile (2)");
         System.out.println("Login as administrator (3)");
-        System.out.println("Get debit card (4)");
+        System.out.println("Get card (4)");
         System.out.println("(exit)");
         System.out.println();
         System.out.print("Enter: ");
@@ -52,6 +52,7 @@ public class FirstPageBank {
     }
 
     void debitCard(BufferedReader reader) throws IOException{
-
+        LogIn logIn = new LogIn();
+        logIn.cardStart(reader);
     }
 }

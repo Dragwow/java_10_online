@@ -10,8 +10,6 @@ import java.io.InputStreamReader;
 
 public class Account {
 
-
-
     public void start() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         menu();
@@ -28,7 +26,8 @@ public class Account {
         System.out.println("If you want to get credit (2)");
         System.out.println("Reset password (3)");
         System.out.println("Return part of the credit (4)");
-        System.out.println("Delete account (5)");
+        System.out.println("Get card (5)");
+        System.out.println("Delete account (6)");
         System.out.println("(return)");
         System.out.println();
         System.out.print("Enter: ");
@@ -40,12 +39,11 @@ public class Account {
             case "2" -> createCred(reader);
             case "3" -> updatePassword(reader);
             case "4" -> retPartCred(reader);
-            case "5" -> delete(reader);
+            case "5" -> getCard();
+            case "6" -> delete(reader);
             case "return" -> back();
         }
     }
-
-
 
     void update(BufferedReader reader) throws IOException{
         WorkAccount.update(reader);
@@ -66,6 +64,11 @@ public class Account {
     void back() throws IOException{
         FirstPageBank firstPageBank = new FirstPageBank();
         firstPageBank.start();
+    }
+
+    void getCard() throws IOException{
+        DebitCard debitCard = new DebitCard();
+        debitCard.start();
     }
 
     void retPartCred(BufferedReader reader) throws IOException{

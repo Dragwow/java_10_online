@@ -1,50 +1,43 @@
 package ua.com.alevel.console;
 
-import ua.com.alevel.Work.WorkAccount;
-import ua.com.alevel.Work.WorkCredit;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class AdminProfile {
-
+public class DebitCard {
     public void start() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         menu();
         String position;
         while ((position = reader.readLine()) != null) {
-            crud(position);
+            crud(reader, position);
             menu();
-
         }
     }
 
     void menu() {
         System.out.println();
-        System.out.println("View registered accounts (1)");
-        System.out.println("View accounts who have credit (2)");
+        System.out.println("Get plastic card (1)");
+        System.out.println("Get platinum card (2)");
+        System.out.println("Get gold card (3)");
         System.out.println("(return)");
         System.out.println();
         System.out.print("Enter: ");
     }
 
-    void crud(String position) throws IOException{
+    void crud(BufferedReader reader, String position) throws IOException{
         switch(position){
-            case "1" -> list();
-            case "2" -> listCred();
+            case "1" -> getPlastic(reader);
             case "return" -> back();
         }
     }
+
     void back() throws IOException{
         FirstPageBank firstPageBank = new FirstPageBank();
         firstPageBank.start();
     }
-    void list(){
-        WorkAccount.list();
-    }
 
-    void listCred(){
-        WorkCredit.listCred();
+    void getPlastic(BufferedReader reader) throws IOException{
+
     }
 }

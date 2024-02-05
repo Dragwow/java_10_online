@@ -1,13 +1,17 @@
 package ua.com.alevel.Service;
 
+import ua.com.alevel.Entity.DebitCardAccount;
 import ua.com.alevel.Entity.EntityData;
 import ua.com.alevel.Entity.EntityGetCred;
 import ua.com.alevel.db.dbAccount;
 import ua.com.alevel.db.dbCredit;
+import ua.com.alevel.db.dbCard;
 public class Service {
 
     dbAccount dbAccount = new dbAccount();
     dbCredit dbCredit = new dbCredit();
+    dbCard dbCard = new dbCard();
+
     public void create(EntityData entityData) {
         if (entityData.getFirstName() != null && entityData.getLastName() != null && entityData.getSurName() != null
             && entityData.getDayOfBirth() != 0 && entityData.getMonthOfBirth() != 0 && entityData.getYearOfBirth() != 0 && entityData.getIdOfPassport() != 0) {
@@ -64,4 +68,5 @@ public class Service {
             dbAccount.updatePassword(entityData);
         }
     }
+
 }

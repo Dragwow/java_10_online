@@ -15,7 +15,7 @@ public class dbAccount {
             }
         }
         if (index == -1) {
-            EntityData[] newEntityData = new EntityData[entityDats.length + 1];
+            EntityData[] newEntityData = new EntityData[entityDats.length + 10];
             System.arraycopy(entityDats, 0, newEntityData, 0, entityDats.length);
             entityDats = newEntityData;
             index = entityDats.length - 1;

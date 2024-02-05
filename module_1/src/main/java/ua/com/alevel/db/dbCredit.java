@@ -14,7 +14,7 @@ public class dbCredit {
                 return;
             }
         }
-        EntityGetCred[] newEntityGetCredits = new EntityGetCred[entityGetCredits.length * 2];
+        EntityGetCred[] newEntityGetCredits = new EntityGetCred[entityGetCredits.length + 10];
         System.arraycopy(entityGetCredits, 0, newEntityGetCredits, 0, entityGetCredits.length);
         newEntityGetCredits[entityGetCredits.length] = entityGetCred;
         entityGetCredits = newEntityGetCredits;

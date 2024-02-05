@@ -4,6 +4,8 @@ import ua.com.alevel.Entity.EntityData;
 import ua.com.alevel.Service.Service;
 import ua.com.alevel.console.Account;
 import ua.com.alevel.console.AdminProfile;
+import ua.com.alevel.console.DebitCard;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -147,7 +149,8 @@ public class WorkAccount {
         }
     }
 
-    public static void logInStart(BufferedReader reader) throws IOException{
+    public static void logInStart(BufferedReader reader) throws IOException {
+        System.out.println();
         System.out.println("     Log in    ");
         System.out.println();
         System.out.print("Enter Login: ");
@@ -165,6 +168,7 @@ public class WorkAccount {
     }
 
     public static void logInAdmin(BufferedReader reader) throws IOException{
+        System.out.println();
         System.out.println("     Log in admin   ");
         System.out.println();
         System.out.print("Enter Login: ");
@@ -179,4 +183,24 @@ public class WorkAccount {
             System.out.println("No access");
         }
     }
+
+    public static void logInCard(BufferedReader reader) throws IOException {
+        System.out.println();
+        System.out.println("     Log in    ");
+        System.out.println();
+        System.out.print("Enter Login: ");
+        String findLogin = reader.readLine();
+        System.out.print("Enter password: ");
+        String findPassword = reader.readLine();
+        EntityData loginAccount = service.findByPasswordAndLogin(findLogin, findPassword);
+        if (loginAccount != null){
+            DebitCard debitCard = new DebitCard();
+            debitCard.start();
+        }else {
+            System.out.println();
+            System.out.println("Try again or register");
+        }
+    }
+
+
 }
