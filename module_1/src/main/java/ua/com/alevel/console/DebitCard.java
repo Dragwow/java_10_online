@@ -1,5 +1,7 @@
 package ua.com.alevel.console;
 
+import ua.com.alevel.Work.WorkAccount;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -38,6 +40,6 @@ public class DebitCard {
     }
 
     void getPlastic(BufferedReader reader) throws IOException{
-
+        WorkAccount.plasticCard(reader);
     }
 }

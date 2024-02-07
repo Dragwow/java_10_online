@@ -1,7 +1,6 @@
 package ua.com.alevel.console;
 
 import ua.com.alevel.Work.WorkAccount;
-import ua.com.alevel.Work.WorkCredit;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,6 +23,7 @@ public class AdminProfile {
         System.out.println();
         System.out.println("View registered accounts (1)");
         System.out.println("View accounts who have credit (2)");
+        System.out.println("View users plastic cards (3)");
         System.out.println("(return)");
         System.out.println();
         System.out.print("Enter: ");
@@ -33,6 +33,7 @@ public class AdminProfile {
         switch(position){
             case "1" -> list();
             case "2" -> listCred();
+            case "3" -> listPlastic();
             case "return" -> back();
         }
     }
@@ -45,6 +46,10 @@ public class AdminProfile {
     }
 
     void listCred(){
-        WorkCredit.listCred();
+        WorkAccount.listCred();
+    }
+
+    void listPlastic(){
+        WorkAccount.listPlastic();
     }
 }

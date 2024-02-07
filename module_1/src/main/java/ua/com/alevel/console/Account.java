@@ -2,7 +2,6 @@ package ua.com.alevel.console;
 
 
 import ua.com.alevel.Work.WorkAccount;
-import ua.com.alevel.Work.WorkCredit;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -54,7 +53,7 @@ public class Account {
     }
 
     void createCred(BufferedReader reader) throws IOException{
-        WorkCredit.createCred(reader);
+        WorkAccount.createCred(reader);
     }
 
     void updatePassword(BufferedReader reader) throws IOException{

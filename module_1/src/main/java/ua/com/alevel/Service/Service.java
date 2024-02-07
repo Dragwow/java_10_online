@@ -1,16 +1,14 @@
 package ua.com.alevel.Service;
 
-import ua.com.alevel.Entity.DebitCardAccount;
 import ua.com.alevel.Entity.EntityData;
 import ua.com.alevel.Entity.EntityGetCred;
+import ua.com.alevel.Entity.PlasticCard;
 import ua.com.alevel.db.dbAccount;
-import ua.com.alevel.db.dbCredit;
-import ua.com.alevel.db.dbCard;
+
+
 public class Service {
 
     dbAccount dbAccount = new dbAccount();
-    dbCredit dbCredit = new dbCredit();
-    dbCard dbCard = new dbCard();
 
     public void create(EntityData entityData) {
         if (entityData.getFirstName() != null && entityData.getLastName() != null && entityData.getSurName() != null
@@ -44,7 +42,7 @@ public class Service {
         EntityData current = dbAccount.findByPasswordAndLogin(login, password);
         if (current != null) {
             if (checkCreditOfData(entityGetCred, entityData)) {
-                dbCredit.createCred(entityGetCred);
+                dbAccount.createCred(entityGetCred);
             }
         }
     }
@@ -59,7 +57,7 @@ public class Service {
                 entityGetCred.getIdOfPassport() == entityData.getIdOfPassport();
     }
     public EntityGetCred[] listCred(){
-        return dbCredit.listCred();
+        return dbAccount.listCred();
     }
 
     public void updatePassword(EntityData entityData){
@@ -69,4 +67,82 @@ public class Service {
         }
     }
 
+    public EntityData[] findByData(EntityData entityData, String firstName, String lastName, String surName) {
+        if (entityData.getFirstName() != null &&
+                entityData.getLastName() != null &&
+                entityData.getSurName() != null &&
+                entityData.getDayOfBirth() != 0 &&
+                entityData.getMonthOfBirth() != 0 &&
+                entityData.getYearOfBirth() != 0) {
+
+            EntityData[] byDateResult = dbAccount.findByDate(entityData);
+            EntityData[] byNamesResult = new EntityData[]{dbAccount.findByNames(
+                    firstName,
+                    lastName,
+                    surName)};
+
+            int totalLength = byDateResult.length + byNamesResult.length;
+
+            EntityData[] combinedResult = new EntityData[totalLength];
+
+            for (int i = 0; i < byDateResult.length; i++) {
+                combinedResult[i] = byDateResult[i];
+            }
+
+            for (int i = 0; i < byNamesResult.length; i++) {
+                combinedResult[byDateResult.length + i] = byNamesResult[i];
+            }
+
+            int distinctCount = 0;
+            for (int i = 0; i < totalLength; i++) {
+                boolean isDuplicate = false;
+                for (int j = 0; j < i; j++) {
+                    if (combinedResult[i] != null && combinedResult[j] != null &&
+                            combinedResult[i].equals(combinedResult[j])) {
+                        isDuplicate = true;
+                        break;
+                    }
+                }
+                if (!isDuplicate) {
+                    distinctCount++;
+                }
+            }
+
+            EntityData[] distinctResult = new EntityData[distinctCount];
+
+            int currentIndex = 0;
+            for (int i = 0; i < totalLength; i++) {
+                boolean isDuplicate = false;
+                for (int j = 0; j < i; j++) {
+                    if (combinedResult[i] != null && combinedResult[j] != null &&
+                            combinedResult[i].equals(combinedResult[j])) {
+                        isDuplicate = true;
+                        break;
+                    }
+                }
+                if (!isDuplicate) {
+                    distinctResult[currentIndex] = combinedResult[i];
+                    currentIndex++;
+                }
+            }
+
+            return distinctResult;
+        }
+
+        return null;
+    }
+
+    public EntityData[] findByPassport(int passportId){
+        return new EntityData[]{dbAccount.findByPassport(passportId)};
+    }
+
+    public void createPlasticCard(PlasticCard plasticCard) {
+        if (plasticCard.getFirstName() != null && plasticCard.getLastName() != null) {
+            dbAccount.createPlasticCard(plasticCard);
+        }
+    }
+
+    public PlasticCard[] listPlastic(){
+        return dbAccount.listPlastic();
+    }
 }
