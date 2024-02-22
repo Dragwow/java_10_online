@@ -46,7 +46,7 @@
                         <configuration>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>ua.com.alevel.homework.MainHW1</mainClass>
+                                    <mainClass>ua.com.alevel.MainHW1</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
