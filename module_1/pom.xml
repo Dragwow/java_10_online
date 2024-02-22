@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ua.com.alevel</groupId>
-    <artifactId>module_1</artifactId>
+    <artifactId>Module_1</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
