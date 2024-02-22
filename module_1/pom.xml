@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>ua.com.alevel</groupId>
-    <artifactId>module_1</artifactId>
+    <artifactId>MODULE_1</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -47,7 +47,7 @@
                         <configuration>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>ua.com.alevel.homework.Main</mainClass>
+                                    <mainClass>ua.com.alevel.homework.Module</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
