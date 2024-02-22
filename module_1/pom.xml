@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ua.com.alevel</groupId>
-    <artifactId>Module_1</artifactId>
+    <artifactId>MODULE_1</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -24,6 +24,7 @@
     </dependencies>
 
     <build>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -56,5 +57,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
