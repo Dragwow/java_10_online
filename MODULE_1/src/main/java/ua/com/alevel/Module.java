@@ -1,7 +1,6 @@
 package ua.com.alevel;
 
 import ua.com.alevel.console.FirstPage;
-
 import java.io.IOException;
 
 public class Module {
