@@ -1,7 +1,10 @@
 package ua.com.alevel;
 
 
-
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.InvalidObjectException;
 
 public class Main {
     public static String reverse(String src) {
@@ -32,10 +35,6 @@ public class Main {
     }
 
     public static String reverse(String src, int firstIndex, int lastIndex) {
-        if (firstIndex < 0 || lastIndex >= src.length() || firstIndex > lastIndex) {
-            throw new IllegalArgumentException("Invalid indices");
-        }
-
         char[] charArray = src.toCharArray();
 
         while (firstIndex < lastIndex) {
@@ -50,9 +49,18 @@ public class Main {
         return new String(charArray);
     }
 
-    public static void main(String[] args) {
-        System.out.println(reverse("hello world"));
-        System.out.println(reverse("hello world", "worl"));
-        System.out.println(reverse("hello world", 3, 7));
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.print("Enter:");
+        String word = reader.readLine();
+        System.out.print("Enter:");
+        String word2 = reader.readLine();
+        System.out.print("Enter number 1:");
+        int num = Integer.parseInt(reader.readLine());
+        System.out.print("Enter number 2:");
+        int num2 = Integer.parseInt(reader.readLine());
+        System.out.println(reverse(word));
+        System.out.println(reverse(word, word2));
+        System.out.println(reverse(word, num, num2));
     }
 }
