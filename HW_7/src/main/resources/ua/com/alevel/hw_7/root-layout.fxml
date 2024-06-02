@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ua.com.alevel.hw_7.controller.RootLayoutController"
+            prefHeight="400.0" prefWidth="800.0">
+
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <Menu text="Menu">
+                <MenuItem text="All Accounts" onAction="#showAccounts"/>
+                <MenuItem text="All Group" onAction="#showGroups"/>
+            </Menu>
+        </MenuBar>
+    </top>
+</BorderPane>

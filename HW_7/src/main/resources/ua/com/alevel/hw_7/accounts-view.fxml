@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ua.com.alevel.hw_7.controller.AccountsViewController"
+            prefHeight="400.0" prefWidth="800.0">
+
+    <children>
+        <VBox layoutX="26.0" layoutY="22.0" spacing="15.0">
+            <children>
+                <Label text="Id">
+                    <font>
+                        <Font size="14.0"/>
+                    </font>
+                </Label>
+                <Label text="Name">
+                    <font>
+                        <Font size="14.0"/>
+                    </font>
+                </Label>
+                <Label text="Last Name">
+                    <font>
+                        <Font size="14.0"/>
+                    </font>
+                </Label>
+                <Label text="Sure Name">
+                    <font>
+                        <Font size="14.0"/>
+                    </font>
+                </Label>
+            </children>
+        </VBox>
+        <VBox layoutX="96.0" layoutY="22.0" prefHeight="130.0" prefWidth="129.0" spacing="10.0">
+            <children>
+                <TextField fx:id="accIdText"/>
+                <TextField fx:id="accNameText"/>
+                <TextField fx:id="accLNameText"/>
+                <TextField fx:id="accSNameText"/>
+            </children>
+        </VBox>
+        <VBox layoutX="26.0" layoutY="172.0" spacing="10.0">
+            <children>
+                <Button fx:id="createAcc" onAction="#create" text="Create"/>
+                <Button fx:id="updateAcc" onAction="#update" text="Update"/>
+                <Button fx:id="deleteAcc" onAction="#delete" text="Delete"/>
+            </children>
+        </VBox>
+        <TableView fx:id="accTable" layoutX="258.0" layoutY="22.0" prefHeight="210.0" prefWidth="500.0">
+            <columns>
+                <TableColumn fx:id="idColumn" text="Id" prefWidth="200.0"/>
+                <TableColumn fx:id="nameColumn" text="First Name" prefWidth="100.0"/>
+                <TableColumn fx:id="lNameColumn" text="Last Name" prefWidth="100.0"/>
+                <TableColumn fx:id="sNameColumn" text="Sure Name" prefWidth="100.0"/>
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>
